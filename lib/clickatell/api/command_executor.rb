@@ -41,6 +41,7 @@ module Clickatell
           )
         end
         
+        #TODO: Implement backwards compatibility for older Ruby versions
         def get_response(uri)
           if in_test_mode?
             sms_requests << uri
