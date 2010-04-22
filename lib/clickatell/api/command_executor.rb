@@ -31,7 +31,7 @@ module Clickatell
       def execute(command_name, service, parameters={})
         request_uri = command(command_name, service, parameters)
         puts "[debug] Sending request to #{request_uri}" if @debug
-        get_response(request_uri).first
+        get_response(request_uri)
       end
       
       protected
@@ -49,7 +49,7 @@ module Clickatell
             http = Net::HTTP.new(uri.host, uri.port)
             http.use_ssl = (uri.scheme == 'https')
             http.start do |http|
-              resp, body = http.get([uri.path, uri.query].join('?'))
+              resp = http.get([uri.path, uri.query].join('?'))
             end
           end
         end
